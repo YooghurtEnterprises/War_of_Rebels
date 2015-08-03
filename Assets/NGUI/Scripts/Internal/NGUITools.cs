@@ -95,7 +95,7 @@ static public class NGUITools
 
 			if (mListener != null && mListener.enabled && NGUITools.GetActive(mListener.gameObject))
 			{
-				AudioSource source = mListener.GetComponent<AudioSource>();
+				AudioSource source = mListener.audio;
 				if (source == null) source = mListener.gameObject.AddComponent<AudioSource>();
 				source.pitch = pitch;
 				source.PlayOneShot(clip, volume);
@@ -467,7 +467,7 @@ static public class NGUITools
 			for (int i = 0, imax = widgets.Length; i < imax; ++i)
 			{
 				UIWidget w = widgets[i];
-				if (w.cachedGameObject != go && w.GetComponent<Collider>() != null) continue;
+				if (w.cachedGameObject != go && w.collider != null) continue;
 				depth = Mathf.Max(depth, w.depth);
 			}
 			return depth + 1;

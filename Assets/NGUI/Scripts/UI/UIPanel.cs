@@ -281,7 +281,7 @@ public class UIPanel : UIRect
 	/// Whether the camera is used to draw UI geometry.
 	/// </summary>
 
-	public bool usedForUI { get { return (mCam != null && mCam.orthographic); } }
+	public bool usedForUI { get { return (mCam != null && mCam.isOrthoGraphic); } }
 
 	/// <summary>
 	/// Directx9 pixel offset, used for drawing.
@@ -291,7 +291,7 @@ public class UIPanel : UIRect
 	{
 		get
 		{
-			if (mHalfPixelOffset && mCam != null && mCam.orthographic)
+			if (mHalfPixelOffset && mCam != null && mCam.isOrthoGraphic)
 			{
 				Vector2 size = GetWindowSize();
 				float mod = (1f / size.y) / mCam.orthographicSize;
@@ -740,7 +740,7 @@ public class UIPanel : UIRect
 		base.OnInit();
 
 		// Apparently having a rigidbody helps
-		if (GetComponent<Rigidbody>() == null)
+		if (rigidbody == null)
 		{
 			Rigidbody rb = gameObject.AddComponent<Rigidbody>();
 			rb.isKinematic = true;
